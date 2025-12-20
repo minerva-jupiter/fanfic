@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="jp">
+    <head>
+        <meta charset="utf-8" />
+        <title>Trinity Library - Fanfic Index</title>
+        <meta name="author" content="ハチか" />
+        <meta name="description" content="ファンフィクション(二次創作置き場)" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header>
+            Library
+            <button class="theme-toggle" id="theme-btn">MODE: LIGHT</button>
+        </header>
+        <nav>
+            <a href="index.html">ホーム</a>
+            <a href="list.html">蔵書目録</a>
+            <a href="sns.html">sns一覧</a>
+            <a href="about.html">about</a>
+        </nav>
+        <main>
+            <span class="doc-id" id="doc-id"
+                >DOC_TYPE: SNS / REF_NO: 776</span
+            >
+            <h1>SNS一覧</h1>
+            <p>
+                <ul>
+                    <li><a href="https://bsky.app/profile/fanfic.minervajuppiter.net">BlueSky</a></li>
+                    <li><a href="https://twitter.com/bite_sour_sweet">Twitter</a></li>
+                    <li><a href="https://www.pixiv.net/users/76640927">Pixiv</a></li>
+                </ul>
+            </p>
+        </main>
+        <footer>
+            このページは主にBlueArchiveの二次創作であり，公式を模す意図はありません．
+        </footer>
+
+        <script>
+            const btn = document.getElementById("theme-btn");
+            const docId = document.getElementById("doc-id");
+            let isDark = false;
+
+            btn.addEventListener("click", () => {
+                isDark = !isDark;
+                document.documentElement.setAttribute(
+                    "data-theme",
+                    isDark ? "dark" : "light",
+                );
+                btn.textContent = isDark ? "MODE: DARK" : "MODE: LIGHT";
+
+                docId.textContent = isDark
+                    ? "DOC_TYPE: NIGHT_ARCHIVE / REF_NO: 404"
+                    : "DOC_TYPE: INDEX / REF_NO: 773";
+            });
+        </script>
+    </body>
+</html>

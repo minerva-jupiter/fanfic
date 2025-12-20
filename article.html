@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="jp">
+    <head>
+        <meta charset="utf-8" />
+        <title>Article</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header>
+            <a href="index.html" style="color: white; text-decoration: none"
+                >Trinity Library</a
+            >
+        </header>
+        <main>
+            <h1 id="article-title"></h1>
+            <article>
+                <span class="doc-id" id="doc-id"
+                    >DOC_TYPE: ARTICLE / REF_NO: 775</span
+                >
+                <div id="article-content" class="content"></div>
+            </article>
+        </main>
+
+        <script>
+            window.addEventListener("DOMContentLoaded", () => {
+                const params = new URLSearchParams(window.location.search);
+                const articleId = params.get("id");
+
+                const titleElement = document.getElementById("article-title");
+                const contentElement =
+                    document.getElementById("article-content");
+
+                if (!articleId) {
+                    titleElement.textContent = "Error";
+                    contentElement.innerHTML = `<p class="error">No article ID provided. Please use a URL like <code>article.html?id=1</code></p>`;
+                    return;
+                }
+
+                fetch(`articles/${articleId}.txt`)
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error(
+                                `Article not found. The file <code>articles/${articleId}.txt</code> does not exist.`,
+                            );
+                        }
+                        return response.text();
+                    })
+                    .then((text) => {
+                        const lines = text.split("\n");
+                        const title = lines[0];
+                        const preformattedContent = lines.slice(1).join("\n");
+
+                        document.title = title;
+                        titleElement.textContent = title;
+
+                        const preElement = document.createElement("pre");
+                        preElement.textContent = preformattedContent;
+
+                        contentElement.innerHTML = "";
+                        contentElement.appendChild(preElement);
+                    })
+                    .catch((error) => {
+                        console.error("Error fetching article:", error);
+                        titleElement.textContent = "Error";
+                        contentElement.innerHTML = `<p class="error">${error.message}</p>`;
+                    });
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="jp">
+    <head>
+        <meta charset="utf-8" />
+        <title>Trinity Library - Fanfic Index</title>
+        <meta name="author" content="ハチか" />
+        <meta name="description" content="ファンフィクション(二次創作置き場)" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header>
+            Library
+            <button class="theme-toggle" id="theme-btn">MODE: LIGHT</button>
+        </header>
+        <nav>
+            <a href="index.html">ホーム</a>
+            <a href="list.html">蔵書目録</a>
+            <a href="sns.html">sns一覧</a>
+            <a href="about.html">about</a>
+        </nav>
+        <main>
+            <span class="doc-id">DOC_TYPE: ABOUT / REF_NO: 777</span>
+            <h1>このサイトについて</h1>
+
+            <h2>トリニティ図書館・書庫</h2>
+            <p>
+                ここは個人の二次創作、主に「ブルーアーカイブ」に関する作品を収蔵する場所です。
+            </p>
+
+            <h2>免責事項 (Disclaimer)</h2>
+            <p>
+                このサイトに掲載されているすべての作品は、ファン活動として制作された二次創作物です。
+                原作である「ブルーアーカイブ」をはじめ、NEXON Games Co.,
+                Ltd.、株式会社Yostar、その他すべての公式関係者様とは一切関係ありません。
+            </p>
+            <p>
+                内容はすべて個人の解釈に基づくものであり、公式の見解、設定、ストーリーラインを代表するものではありません。また、掲載内容の無断転載、複製、商業利用を固く禁じます。
+            </p>
+
+            <h2>ソースコード (Source Code)</h2>
+            <p>
+                このウェブサイトのソースコードは、以下のGitHubリポジトリで公開しています。
+                <br />
+                <a
+                    href="https://github.com/minerva-jupiter/fanfic"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >https://github.com/minerva-jupiter/fanfic</a
+                >
+            </p>
+        </main>
+        <footer>
+            このページは主にBlueArchiveの二次創作であり，公式を模す意図はありません．
+        </footer>
+
+        <script>
+            const btn = document.getElementById("theme-btn");
+            const docId = document.getElementById("doc-id");
+            let isDark = false;
+
+            btn.addEventListener("click", () => {
+                isDark = !isDark;
+                document.documentElement.setAttribute(
+                    "data-theme",
+                    isDark ? "dark" : "light",
+                );
+                btn.textContent = isDark ? "MODE: DARK" : "MODE: LIGHT";
+
+                docId.textContent = isDark
+                    ? "DOC_TYPE: NIGHT_ARCHIVE / REF_NO: 404"
+                    : "DOC_TYPE: INDEX / REF_NO: 773";
+            });
+        </script>
+    </body>
+</html>

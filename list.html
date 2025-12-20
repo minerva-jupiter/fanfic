@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="jp">
+    <head>
+        <meta charset="utf-8" />
+        <title>Trinity Library - Fanfic Index</title>
+        <meta name="author" content="ハチか" />
+        <meta name="description" content="ファンフィクション(二次創作置き場)" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header>
+            Library
+            <button class="theme-toggle" id="theme-btn">MODE: LIGHT</button>
+        </header>
+        <nav>
+            <a href="index.html">ホーム</a>
+            <a href="list.html">蔵書目録</a>
+            <a href="sns.html">sns一覧</a>
+            <a href="about.html">about</a>
+        </nav>
+        <main>
+            <span class="doc-id" id="doc-id"
+                >DOC_TYPE: INDEX / REF_NO: 773</span
+            >
+            <h1>蔵書目録</h1>
+            <ul id="article-list">
+                <!-- Links will be added here by JavaScript -->
+            </ul>
+        </main>
+        <footer>
+            このページは主にBlue
+            Archiveの二次創作であり，公式を模す意図はありません．
+        </footer>
+
+        <script>
+            // --- Theme Toggle Script ---
+            const btn = document.getElementById("theme-btn");
+            const docId = document.getElementById("doc-id");
+            let isDark = false;
+
+            btn.addEventListener("click", () => {
+                isDark = !isDark;
+                document.documentElement.setAttribute(
+                    "data-theme",
+                    isDark ? "dark" : "light",
+                );
+                btn.textContent = isDark ? "MODE: DARK" : "MODE: LIGHT";
+
+                docId.textContent = isDark
+                    ? "DOC_TYPE: NIGHT_ARCHIVE / REF_NO: 404"
+                    : "DOC_TYPE: INDEX / REF_NO: 773";
+            });
+
+            // --- Article List Generation Script ---
+            window.addEventListener("DOMContentLoaded", () => {
+                const articleListElement =
+                    document.getElementById("article-list");
+
+                // This function tries to fetch an article by its ID.
+                // If successful, it returns the title; otherwise, it returns null.
+                async function fetchArticleTitle(id) {
+                    try {
+                        const response = await fetch(`articles/${id}.txt`);
+                        if (!response.ok) {
+                            return null; // Stop when we get a 404 error
+                        }
+                        const text = await response.text();
+                        const title = text.split("\n")[0]; // The first line is the title
+                        return title;
+                    } catch (error) {
+                        console.error(`Error fetching article ${id}:`, error);
+                        return null;
+                    }
+                }
+
+                // This function fetches articles one by one until none are found.
+                async function loadAllArticles() {
+                    articleListElement.innerHTML = "<li>Loading...</li>";
+                    let id = 1;
+                    const articles = [];
+
+                    while (true) {
+                        const title = await fetchArticleTitle(id);
+                        if (title) {
+                            articles.push({ id, title });
+                            id++;
+                        } else {
+                            break; // No more articles found
+                        }
+                    }
+
+                    // Clear the "Loading..." message
+                    articleListElement.innerHTML = "";
+
+                    // Populate the list with links
+                    if (articles.length > 0) {
+                        articles.forEach((article) => {
+                            const listItem = document.createElement("li");
+                            const link = document.createElement("a");
+                            link.href = `article.html?id=${article.id}`;
+                            link.textContent = article.title;
+                            listItem.appendChild(link);
+                            articleListElement.appendChild(listItem);
+                        });
+                    } else {
+                        articleListElement.innerHTML =
+                            "<li>No articles found.</li>";
+                    }
+                }
+
+                loadAllArticles();
+            });
+        </script>
+    </body>
+</html>
