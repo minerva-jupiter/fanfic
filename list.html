@@ -94,6 +94,7 @@
 
                     // Populate the list with links
                     if (articles.length > 0) {
+                        articles.reverse(); // Display in descending order
                         articles.forEach((article) => {
                             const listItem = document.createElement("li");
                             const link = document.createElement("a");
