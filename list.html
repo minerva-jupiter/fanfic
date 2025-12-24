@@ -23,9 +23,7 @@
                 >DOC_TYPE: INDEX / REF_NO: 773</span
             >
             <h1>蔵書目録</h1>
-            <ul id="article-list">
-                <!-- Links will be added here by JavaScript -->
-            </ul>
+            <ul id="article-list"></ul>
         </main>
         <footer>
             このページは主にBlue
@@ -33,7 +31,6 @@
         </footer>
 
         <script>
-            // --- Theme Toggle Script ---
             const btn = document.getElementById("theme-btn");
             const docId = document.getElementById("doc-id");
             let isDark = false;
@@ -51,21 +48,18 @@
                     : "DOC_TYPE: INDEX / REF_NO: 773";
             });
 
-            // --- Article List Generation Script ---
             window.addEventListener("DOMContentLoaded", () => {
                 const articleListElement =
                     document.getElementById("article-list");
 
-                // This function tries to fetch an article by its ID.
-                // If successful, it returns the title; otherwise, it returns null.
                 async function fetchArticleTitle(id) {
                     try {
                         const response = await fetch(`articles/${id}.txt`);
                         if (!response.ok) {
-                            return null; // Stop when we get a 404 error
+                            return null;
                         }
                         const text = await response.text();
-                        const title = text.split("\n")[0]; // The first line is the title
+                        const title = text.split("\n")[0];
                         return title;
                     } catch (error) {
                         console.error(`Error fetching article ${id}:`, error);
@@ -73,7 +67,6 @@
                     }
                 }
 
-                // This function fetches articles one by one until none are found.
                 async function loadAllArticles() {
                     articleListElement.innerHTML = "<li>Loading...</li>";
                     let id = 1;
@@ -85,16 +78,14 @@
                             articles.push({ id, title });
                             id++;
                         } else {
-                            break; // No more articles found
+                            break;
                         }
                     }
 
-                    // Clear the "Loading..." message
                     articleListElement.innerHTML = "";
 
-                    // Populate the list with links
                     if (articles.length > 0) {
-                        articles.reverse(); // Display in descending order
+                        articles.reverse();
                         articles.forEach((article) => {
                             const listItem = document.createElement("li");
                             const link = document.createElement("a");

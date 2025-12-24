@@ -55,6 +55,7 @@
 
                         const preElement = document.createElement("pre");
                         preElement.textContent = preformattedContent;
+                        preElement.style.whiteSpace = "pre-wrap";
 
                         contentElement.innerHTML = "";
                         contentElement.appendChild(preElement);
