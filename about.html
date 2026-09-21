@@ -10,18 +10,17 @@
     </head>
     <body>
         <header>
-            Library
-            <button class="theme-toggle" id="theme-btn">MODE: LIGHT</button>
+            <div class="logo">Trinity Library</div>
         </header>
         <nav>
-            <a href="index.html">ホーム</a>
-            <a href="list.html">蔵書目録</a>
-            <a href="sns.html">sns一覧</a>
-            <a href="about.html">about</a>
+            <a href="index.html">Home</a>
+            <a href="list.html">Book List</a>
+            <a href="sns.html">SNS</a>
+            <a href="about.html">About</a>
         </nav>
         <main>
             <span class="doc-id">DOC_TYPE: ABOUT / REF_NO: 777</span>
-            <h1>このサイトについて</h1>
+            <h1>About This Site</h1>
 
             <h2>トリニティ図書館・書庫</h2>
             <p>
@@ -40,12 +39,13 @@
 
             <h2>ソースコード (Source Code)</h2>
             <p>
-                このウェブサイトのソースコードは、以下のGitHubリポジトリで公開しています。
+                このウェブサイト of ソースコードは、以下のGitHubリポジトリで公開しています。
                 <br />
                 <a
                     href="https://github.com/minerva-jupiter/fanfic"
                     target="_blank"
                     rel="noopener noreferrer"
+                    class="red-link"
                     >https://github.com/minerva-jupiter/fanfic</a
                 >
             </p>
@@ -53,24 +53,5 @@
         <footer>
             このページは主にBlueArchiveの二次創作であり，公式を模す意図はありません．
         </footer>
-
-        <script>
-            const btn = document.getElementById("theme-btn");
-            const docId = document.getElementById("doc-id");
-            let isDark = false;
-
-            btn.addEventListener("click", () => {
-                isDark = !isDark;
-                document.documentElement.setAttribute(
-                    "data-theme",
-                    isDark ? "dark" : "light",
-                );
-                btn.textContent = isDark ? "MODE: DARK" : "MODE: LIGHT";
-
-                docId.textContent = isDark
-                    ? "DOC_TYPE: NIGHT_ARCHIVE / REF_NO: 404"
-                    : "DOC_TYPE: INDEX / REF_NO: 773";
-            });
-        </script>
     </body>
 </html>

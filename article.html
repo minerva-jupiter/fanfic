@@ -9,19 +9,26 @@
     </head>
     <body>
         <header>
-            <a href="index.html" style="color: white; text-decoration: none"
-                >Trinity Library</a
-            >
+            <div class="logo">
+                <a href="index.html" style="color: white; text-decoration: none">Trinity Library</a>
+            </div>
         </header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="list.html">Book List</a>
+            <a href="sns.html">SNS</a>
+            <a href="about.html">About</a>
+        </nav>
         <main>
+            <span class="doc-id" id="doc-id">DOC_TYPE: ARTICLE / REF_NO: 775</span>
             <h1 id="article-title"></h1>
             <article>
-                <span class="doc-id" id="doc-id"
-                    >DOC_TYPE: ARTICLE / REF_NO: 775</span
-                >
                 <div id="article-content" class="content"></div>
             </article>
         </main>
+        <footer>
+            このページは主にBlueArchiveの二次創作であり，公式を模す意図はありません．
+        </footer>
 
         <script>
             window.addEventListener("DOMContentLoaded", () => {
@@ -55,12 +62,16 @@
                         document.title = title;
                         titleElement.textContent = title;
 
-                        const preElement = document.createElement("pre");
+                        const preElement = document.createElement("ref-content");
                         preElement.textContent = preformattedContent;
                         preElement.style.whiteSpace = "pre-wrap";
 
+                        // Use the styled <pre> equivalent class or structure
+                        const container = document.createElement("pre");
+                        container.textContent = preformattedContent;
+
                         contentElement.innerHTML = "";
-                        contentElement.appendChild(preElement);
+                        contentElement.appendChild(container);
                     })
                     .catch((error) => {
                         console.error("Error fetching article:", error);
