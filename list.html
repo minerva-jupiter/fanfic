@@ -3,9 +3,10 @@
     <head>
         <meta charset="utf-8" />
         <title>Trinity Library - Fanfic Index</title>
-        <meta name="author" content="ハチか" />
+        <meta name="author" content="ハチ" />
         <meta name="description" content="ファンフィクション(二次創作置き場)" />
         <link rel="stylesheet" href="styles.css" />
+        <link rel="shortcut icon" href="favicon.svg">
     </head>
     <body>
         <header>
@@ -20,7 +21,7 @@
         </nav>
         <main>
             <span class="doc-id" id="doc-id"
-                >DOC_TYPE: INDEX / REF_NO: 773</span
+                >DOC_TYPE: INDEX / REF_NO: 774</span
             >
             <h1>蔵書目録</h1>
             <ul id="article-list"></ul>
@@ -42,10 +43,6 @@
                     isDark ? "dark" : "light",
                 );
                 btn.textContent = isDark ? "MODE: DARK" : "MODE: LIGHT";
-
-                docId.textContent = isDark
-                    ? "DOC_TYPE: NIGHT_ARCHIVE / REF_NO: 404"
-                    : "DOC_TYPE: INDEX / REF_NO: 773";
             });
 
             window.addEventListener("DOMContentLoaded", () => {
