@@ -24,7 +24,7 @@
             <span class="doc-id" id="doc-id">DOC_TYPE: ARTICLE / REF_NO: 775</span>
             <h1 id="article-title"></h1>
             <article>
-                <div id="article-content" class="content"></div>
+                <div id="article-content" class="novel"></div>
             </article>
         </main>
         <footer>
@@ -70,6 +70,9 @@
                         // Use the styled <pre> equivalent class or structure
                         const container = document.createElement("pre");
                         container.textContent = preformattedContent;
+                        container.style.whiteSpace = "pre-wrap";
+                        container.style.wordBreak = "break-all";
+                        container.style.overflowWrap = "break-word";
 
                         contentElement.innerHTML = "";
                         contentElement.appendChild(container);

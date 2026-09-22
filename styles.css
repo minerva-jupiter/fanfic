@@ -123,6 +123,9 @@ pre {
     border-radius: 0;
     margin: 2rem 0;
     overflow-x: auto;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-break: break-all;
 }
 
 .card-container {
